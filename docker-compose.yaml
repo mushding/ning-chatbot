@@ -1,0 +1,10 @@
+version: '3'
+services:
+  linebot:
+    build: .
+    image: "python_chatbot:1.0.0"
+    restart: unless-stopped
+    environment:
+      OPENAI_API: ${OPENAI_API}
+      CHANNEL_ACCESS_TOKEN: ${CHANNEL_ACCESS_TOKEN}
+      CHANNEL_SECRET: ${CHANNEL_SECRET}
