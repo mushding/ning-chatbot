@@ -1,10 +1,9 @@
 const express = require("express");
 const line = require('@line/bot-sdk');
+const OpenAI = require('openai');
 
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: "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"
+const openai = new OpenAI.OpenAI({
+  apiKey: process.env["OPENAI_KEY"]
 });
 
 const config = {
@@ -34,8 +33,8 @@ const handleEvent = async (event) => {
 
   return client.replyMessage(event.replyToken, {
     type: 'text',
-    text: completion.choices
+    text: completion.choices[0].message.content
   });
 }
 
-app.listen(3000);
+app.listen(8083);
